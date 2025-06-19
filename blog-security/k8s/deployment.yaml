@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-blog
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: laravel
+  template:
+    metadata:
+      labels:
+        app: laravel
+    spec:
+      containers:
+      - name: laravel
+        image: nisa17/laravel-blog:latest  # o la imagen que subas a DockerHub
+        ports:
+        - containerPort: 80
+        env:
+        - name: DB_HOST
+          value: "78.46.124.239"  # tu IP on-premise
+        - name: DB_DATABASE
+          value: "laravel"
+        - name: DB_USERNAME
+          value: "laravel"
+        - name: DB_PASSWORD
+          value: "bolson2024"
